@@ -227,7 +227,14 @@ class WeatherPreferences(Adw.PreferencesWindow):
 
     def _on_auto_refresh_changed(self, combo_row, _pspec):
         index = combo_row.get_selected()
-        settings.auto_refresh_interval = self.auto_refresh_intervals[index]
+        auto_refresh_interval = self.auto_refresh_intervals[index]
+        settings.auto_refresh_interval = auto_refresh_interval
+
+        message = _("Auto refresh disabled")
+        if auto_refresh_interval > 0:
+            message = _("Auto refresh every {} min").format(auto_refresh_interval)
+
+        self.add_toast(create_toast(message, 1))
 
     def _on_reset_clicked(self, button):
         dialog = Adw.MessageDialog.new(
