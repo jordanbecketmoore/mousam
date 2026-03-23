@@ -26,11 +26,11 @@
       <summary>Use 24h hour clock</summary>
     </key>
 	  <key name="window-width" type="i">
-      <default>1160</default>
+      <default>1060</default>
       <summary>Main window width</summary>
     </key>
 	  <key name="window-height" type="i">
-      <default>818</default>
+      <default>736</default>
       <summary>Main window height</summary>
     </key>
 	  <key name="window-maximized" type="b">
