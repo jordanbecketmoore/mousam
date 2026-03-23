@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mousam\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-23 22:04+0530\n"
+"POT-Creation-Date: 2026-03-23 22:25+0530\n"
 "PO-Revision-Date: 2024-07-01 23:06+0530\n"
 "Last-Translator: Scrambled777 <weblate.scrambled777@simplelogin.com>\n"
 "Language-Team: Hindi <indlinux-hindi@lists.sourceforge.net>\n"
@@ -746,25 +746,33 @@ msgstr "2 सेकंड के भीतर बदलने पर नज़�
 msgid "Switched to - {}"
 msgstr "{} - पर बदला गया"
 
+#: src/windowPreferences.py:233
+msgid "Auto refresh disabled"
+msgstr ""
+
 #: src/windowPreferences.py:235
+msgid "Auto refresh every {} min"
+msgstr ""
+
+#: src/windowPreferences.py:242
 msgid "Reset Settings?"
 msgstr ""
 
-#: src/windowPreferences.py:237
+#: src/windowPreferences.py:244
 msgid ""
 "This will restore all settings to default and wiil clear your saved cities. "
 "This action cannot be undone."
 msgstr ""
 
-#: src/windowPreferences.py:240
+#: src/windowPreferences.py:247
 msgid "Cancel"
 msgstr ""
 
-#: src/windowPreferences.py:241
+#: src/windowPreferences.py:248
 msgid "Reset"
 msgstr ""
 
-#: src/windowPreferences.py:269
+#: src/windowPreferences.py:276
 msgid "Preferences have been reset"
 msgstr ""
 

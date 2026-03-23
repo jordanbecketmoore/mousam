@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mousam\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-23 22:04+0530\n"
+"POT-Creation-Date: 2026-03-23 22:25+0530\n"
 "PO-Revision-Date: 2024-11-02 12:00+0800\n"
 "Last-Translator: lipcut <cratemover9001@proton.me>\n"
 "Language-Team: Traditional Chinese <LL@li.org>\n"
@@ -730,25 +730,33 @@ msgstr "2秒內的位置切換將被忽略"
 msgid "Switched to - {}"
 msgstr "已切換至 - {}"
 
+#: src/windowPreferences.py:233
+msgid "Auto refresh disabled"
+msgstr ""
+
 #: src/windowPreferences.py:235
+msgid "Auto refresh every {} min"
+msgstr ""
+
+#: src/windowPreferences.py:242
 msgid "Reset Settings?"
 msgstr ""
 
-#: src/windowPreferences.py:237
+#: src/windowPreferences.py:244
 msgid ""
 "This will restore all settings to default and wiil clear your saved cities. "
 "This action cannot be undone."
 msgstr ""
 
-#: src/windowPreferences.py:240
+#: src/windowPreferences.py:247
 msgid "Cancel"
 msgstr ""
 
-#: src/windowPreferences.py:241
+#: src/windowPreferences.py:248
 msgid "Reset"
 msgstr ""
 
-#: src/windowPreferences.py:269
+#: src/windowPreferences.py:276
 msgid "Preferences have been reset"
 msgstr ""
 
