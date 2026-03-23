@@ -26,7 +26,7 @@ class CurrentCondition(Gtk.Grid):
             orientation=Gtk.Orientation.VERTICAL,
             hexpand=True,
             halign=Gtk.Align.START,
-            margin_top=10,
+            margin_top=0,
         )
         self.attach(box_left, 0, 0, 1, 1)
 
@@ -66,7 +66,7 @@ class CurrentCondition(Gtk.Grid):
 
         # ========== right  section ==========
         box_right = Gtk.Box(
-            orientation=Gtk.Orientation.VERTICAL, margin_top=16, margin_end=5
+            orientation=Gtk.Orientation.VERTICAL, margin_top=10, margin_end=5
         )
         self.attach(box_right, 1, 0, 1, 1)
 

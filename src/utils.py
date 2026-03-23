@@ -21,7 +21,6 @@ from gi.repository import Adw
 INTERNET_CACHE_TTL = 120  # seconds
 DATA_CACHE_TTL = 30
 DATA_MAX_ENTRIES = 128
-DEFAULT_TIMEZONE = "UTC"
 _internet_cache = {"timestamp": 0.0, "status": False}
 
 local_time_data = dict()
@@ -95,8 +94,7 @@ def get_timezone_from_selected_city():
     added_cities = JsonProcessor.str_list_to_json(settings.added_cities)
     for city in added_cities:
         if settings.selected_city == f"{city.get("latitude")},{city.get("longitude")}":
-            tz = city.get("timezone", DEFAULT_TIMEZONE)
-            return tz if tz else DEFAULT_TIMEZONE
+            return city.get("timezone", "Asia/Kolkata")
 
 
 def get_time_difference(timezone_str: str = "", force=False):
@@ -188,11 +186,7 @@ class cached:
         # Create a structure that contains both positional and keyword arguments
         data = {"args": list(args), "kwargs": kwargs}
         # Compact JSON with sorted keys for reproducibility
-        key=  json.dumps(data, sort_keys=True, default=str)
-        print("-------------++----------------")
-        print(key)
-        print("-----------------------------")
-        return key
+        return json.dumps(data, sort_keys=True, default=str)
 
     def __call__(self, func: Callable) -> Callable:
         @functools.wraps(func)
