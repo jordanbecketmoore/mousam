@@ -55,40 +55,64 @@
   </categories>
   <content_rating type="oars-1.1" />
   <releases>
+    <release version="1.5.0" date="2026-03-23">
+      <description translate="no">
+        <p>What's New</p>
+        <ul>
+          <li>Implemented GUI auto-refresh intervals for more up-to-date weather data.</li>
+          <li>Improved UI and added caching for better performance and responsiveness.</li>
+          <li>Adjusted default window size and timezone settings.</li>
+          <li>Renamed internal files for better project organization.</li>
+        </ul>
+
+        <p>Translations</p>
+        <ul>
+          <li>Added Finnish translation.</li>
+          <li>Added and improved German translations.</li>
+          <li>Updated Polish translation.</li>
+        </ul>
+
+        <p>Contributors</p>
+        <ul>
+          <li>New contributors: jpeant, Discostu36, jordanbecketmoore.</li>
+        </ul>
+      </description>
+    </release>
+
     <release version="1.4.2" date="2026-01-20">
-  <description translate="no">
-    <p>What's New</p>
-    <ul>
-      <li>Added option to reset app data from settings.</li>
-      <li>Fixed bar showing incorrect data.</li>
-    </ul>
-  </description>
-</release>
-  <release version="1.4.1" date="2026-01-19">
-  <description translate="no">
-    <p>What's New</p>
-    <ul>
-      <li>Improved UI spacing and updated icons for better visual consistency.</li>
-      <li>General performance improvements and smoother interactions.</li>
-      <li>Improved hourly forecast scrolling without requiring the Shift key.</li>
-      <li>More accurate imperial unit handling, including inHg support.</li>
-    </ul>
+      <description translate="no">
+        <p>What's New</p>
+        <ul>
+          <li>Added option to reset app data from settings.</li>
+          <li>Fixed bar showing incorrect data.</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.4.1" date="2026-01-19">
+      <description translate="no">
+        <p>What's New</p>
+        <ul>
+          <li>Improved UI spacing and updated icons for better visual consistency.</li>
+          <li>General performance improvements and smoother interactions.</li>
+          <li>Improved hourly forecast scrolling without requiring the Shift key.</li>
+          <li>More accurate imperial unit handling, including inHg support.</li>
+        </ul>
 
-    <p>Bug Fixes</p>
-    <ul>
-      <li>Fixed application crashes caused by timeapi.io.</li>
-      <li>Fixed unit toggle behavior for improved reliability.</li>
-      <li>Resolved hourly weather API issues by using automatic timezone handling.</li>
-      <li>Fixed minor UI issues and typos.</li>
-    </ul>
+        <p>Bug Fixes</p>
+        <ul>
+          <li>Fixed application crashes caused by timeapi.io.</li>
+          <li>Fixed unit toggle behavior for improved reliability.</li>
+          <li>Resolved hourly weather API issues by using automatic timezone handling.</li>
+          <li>Fixed minor UI issues and typos.</li>
+        </ul>
 
-    <p>Translations</p>
-    <ul>
-      <li>Added Thai, Hungarian, Czech, and Simplified Chinese (zh_CN) translations.</li>
-      <li>Updated Portuguese (Brazil), Russian, Italian, and other existing translations.</li>
-    </ul>
-  </description>
-</release>
+        <p>Translations</p>
+        <ul>
+          <li>Added Thai, Hungarian, Czech, and Simplified Chinese (zh_CN) translations.</li>
+          <li>Updated Portuguese (Brazil), Russian, Italian, and other existing translations.</li>
+        </ul>
+      </description>
+    </release>
 
     <release version="1.4.0" date="2024-12-12">
       <description translate="no">
@@ -110,6 +134,7 @@
         </ul>
       </description>
     </release>
+
     <release version="1.3.2" date="2024-6-30">
       <description translate="no">
         <p>What's New</p>
@@ -137,60 +162,60 @@
       </description>
     </release>
       <release version="1.3.0" date="2024-06-09">
-      <description translate="no">
-        <p>What's New</p>
-        <ul>
-          <li>Added Option to switch between different time-formats 12h/24h.</li>
-          <li>Now app retains the window size/state.</li>
-          <li>Improved app startup and weather refresh performance.</li>
-        </ul>
+        <description translate="no">
+          <p>What's New</p>
+          <ul>
+            <li>Added Option to switch between different time-formats 12h/24h.</li>
+            <li>Now app retains the window size/state.</li>
+            <li>Improved app startup and weather refresh performance.</li>
+          </ul>
 
-        <p>Translation</p>
-        <ul>
-          <li>Romanian by @georgescutelnicu</li>
-          <li>French  by @SpicyWasab</li>
-        </ul>
-        <p>Thanks to</p>
-        <ul>
-          <li>And thanks to them who reported bug on github issues.</li>
-        </ul>
-      </description>
-    </release>
+          <p>Translation</p>
+          <ul>
+            <li>Romanian by @georgescutelnicu</li>
+            <li>French  by @SpicyWasab</li>
+          </ul>
+          <p>Thanks to</p>
+          <ul>
+            <li>And thanks to them who reported bug on github issues.</li>
+          </ul>
+        </description>
+      </release>
 
       <release version="1.2.0" date="2024-05-14">
-      <description translate="no">
-        <p>What's New</p>
-        <ul>
-          <li>Mousam is now more usable on low resolution displays.</li>
-          <li>Added keyboard shortcuts for various like refresh, open settings etc. Thanks to @francobattista.</li>
-          <li>"Now" label in hourly forecast is automatically scrolled in the view. Thanks to  @georgescutelnicu</li>
-          <li>Now Mousam uses gnome runtime-version 46.</li>
-        </ul>
-        <p>Bug fixes</p>
-        <ul>
-          <li>Tomorrow's forecast is fixed now where it was showing offset forecast.</li>
-          <li>Some UI improvements in search city dialog.</li>
-          <li>Fixed error where sun rotation was inaccurate sometimes.</li>
-        </ul>
-        <p>Translation</p>
-        <ul>
-          <li>App is now available in various native languages :</li>
-          <li>Dutch  by @Vistaus</li>
-          <li>French + German by @Yellowbery01</li>
-          <li>Brazilian Portuguese by @Luiz-C-Lima</li>
-          <li>Polish by @LukaszH77</li>
-          <li>Ukrainian by @SimonOriginal</li>
-          <li>Hindi by @Scrambled777</li>
-        </ul>
-        <p>Thanks to</p>
-        <ul>
-          <li>@LukaszH77 for adding context related translation changes</li>
-          <li>@yakushabb for adding translation related patches</li>
-          <li>And thanks to the folks who reported issues on GitHub.</li>
-          <li>Thanks you for using Mousam.</li>
-        </ul>
-      </description>
-    </release>
+        <description translate="no">
+          <p>What's New</p>
+          <ul>
+            <li>Mousam is now more usable on low resolution displays.</li>
+            <li>Added keyboard shortcuts for various like refresh, open settings etc. Thanks to @francobattista.</li>
+            <li>"Now" label in hourly forecast is automatically scrolled in the view. Thanks to  @georgescutelnicu</li>
+            <li>Now Mousam uses gnome runtime-version 46.</li>
+          </ul>
+          <p>Bug fixes</p>
+          <ul>
+            <li>Tomorrow's forecast is fixed now where it was showing offset forecast.</li>
+            <li>Some UI improvements in search city dialog.</li>
+            <li>Fixed error where sun rotation was inaccurate sometimes.</li>
+          </ul>
+          <p>Translation</p>
+          <ul>
+            <li>App is now available in various native languages :</li>
+            <li>Dutch  by @Vistaus</li>
+            <li>French + German by @Yellowbery01</li>
+            <li>Brazilian Portuguese by @Luiz-C-Lima</li>
+            <li>Polish by @LukaszH77</li>
+            <li>Ukrainian by @SimonOriginal</li>
+            <li>Hindi by @Scrambled777</li>
+          </ul>
+          <p>Thanks to</p>
+          <ul>
+            <li>@LukaszH77 for adding context related translation changes</li>
+            <li>@yakushabb for adding translation related patches</li>
+            <li>And thanks to the folks who reported issues on GitHub.</li>
+            <li>Thanks you for using Mousam.</li>
+          </ul>
+        </description>
+      </release>
      <release version="1.1.0" date="2024-02-24">
       <description translate="no">
         <p>What's New</p>
