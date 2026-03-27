@@ -27,6 +27,7 @@ class HourlyDetails(Gtk.Grid):
 
         self.set_margin_top(10)
         self.set_margin_start(3)
+        self._signal_handlers = []  # [(widget, handler_id)] for cleanup
         self.paint_ui()
         self.daily_forecast = None
         self.scrolled_window
@@ -62,7 +63,8 @@ class HourlyDetails(Gtk.Grid):
             else:
                 button.set_group(first_btn)
             style_buttons_box.append(button)
-            button.connect("clicked", self._on_btn_clicked, page_name)
+            hid = button.connect("clicked", self._on_btn_clicked, page_name)
+            self._signal_handlers.append((button, hid))
 
         first_btn.do_clicked(first_btn)
         tab_box.append(style_buttons_box)
@@ -130,7 +132,8 @@ class HourlyDetails(Gtk.Grid):
 
         controller = Gtk.EventControllerScroll.new(Gtk.EventControllerScrollFlags.BOTH_AXES)
         scrolled_window.add_controller(controller)
-        controller.connect("scroll", self.on_scroll)
+        hid = controller.connect("scroll", self.on_scroll)
+        self._signal_handlers.append((controller, hid))
 
         graphic_container = Gtk.Box(
             orientation=Gtk.Orientation.HORIZONTAL,
@@ -271,6 +274,13 @@ class HourlyDetails(Gtk.Grid):
             value=scrollbar_offset, lower=0, upper=container_width
         )
         scrolled_window.set_hadjustment(h_adjustment)
+
+    def cleanup(self):
+        """Disconnect all self-referential signal handlers to break GObject↔Python cycles."""
+        for widget, handler_id in self._signal_handlers:
+            if widget.handler_is_connected(handler_id):
+                widget.disconnect(handler_id)
+        self._signal_handlers.clear()
 
     def on_scroll(self, controller, dx, dy):
         hadj = self.scrolled_window.get_hadjustment()

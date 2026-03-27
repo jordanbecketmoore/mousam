@@ -1,3 +1,4 @@
+import gc
 import gi
 import threading
 
@@ -388,7 +389,71 @@ class WeatherMainWindow(Adw.ApplicationWindow):
                 interval * 60, self._on_auto_refresh_tick
             )
 
+    def _clear_draw_funcs(self, widget):
+        """Recursively sever GObject↔Python reference cycles in a widget subtree.
+
+        Two cycle types are handled:
+        1. DrawingArea set_draw_func: GObject stores a Python callable that holds
+           a ref back to the Python wrapper, preventing GObject refcount from
+           reaching zero. Replaced with a no-op before removal.
+        2. Signal handler cycles (HourlyDetails, Forecast): ToggleButton/Controller
+           signal closures store a Python bound method holding 'self', keeping the
+           parent widget alive. Widgets exposing cleanup() disconnect these handlers.
+
+        Neither cycle is visible to GObject refcounting or Python's cyclic GC
+        because they cross the C↔Python boundary via GLib signal closures.
+        """
+        if hasattr(widget, "cleanup"):
+            widget.cleanup()
+        if isinstance(widget, Gtk.DrawingArea):
+            widget.set_draw_func(lambda *_: None, None)
+        child = widget.get_first_child()
+        while child is not None:
+            next_sib = child.get_next_sibling()
+            self._clear_draw_funcs(child)
+            child = next_sib
+
+    def _pre_refresh_cleanup(self):
+        from . import CORE_weatherData
+        from .API_Weather import Weather
+        from .API_AirPollution import AirPollution
+        from . import utils as utils_module
+
+        # Evict old content widget tree early (before new fetch begins).
+        # Before removal, walk the subtree and clear set_draw_func on every
+        # DrawingArea. This breaks the cross-language GObject↔Python reference
+        # cycle created by set_draw_func(self.on_draw), which neither GObject's
+        # refcounting nor Python's cyclic GC can resolve on their own.
+        child = self.main_stack.get_child_by_name("content")
+        if child:
+            self._clear_draw_funcs(child)
+            self.main_stack.remove(child)
+            del child  # drop local ref immediately
+
+        # Clear API response caches so the fetch goes to network and
+        # old response dicts are not kept alive alongside the new ones
+        Weather.current_weather.__func__.cache_clear()
+        Weather.forecast_hourly.__func__.cache_clear()
+        Weather.forecast_daily.__func__.cache_clear()
+        AirPollution.current_air_pollution.cache_clear()
+
+        # Clear timezone cache (will be repopulated during fetch)
+        utils_module.local_time_data.clear()
+
+        # Run cyclic GC to break any remaining Python-level cycles
+        gc.collect()
+
+        # Return freed pymalloc arenas to the OS. Python's allocator keeps freed
+        # memory in pools even after GC, which inflates RSS without being a real
+        # leak. malloc_trim(0) is Linux-specific and a no-op on other platforms.
+        try:
+            import ctypes
+            ctypes.cdll.LoadLibrary("libc.so.6").malloc_trim(0)
+        except Exception:
+            pass
+
     def _on_auto_refresh_tick(self):
+        self._pre_refresh_cleanup()
         self._start_data_refresh()
         return GLib.SOURCE_CONTINUE
 

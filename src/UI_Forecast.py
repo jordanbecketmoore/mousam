@@ -78,6 +78,7 @@ class Forecast(Gtk.Grid):
         """
         super().__init__(*args, **kwargs)
 
+        self._signal_handlers = []  # [(widget, handler_id)] for cleanup
         self._setup_styling()
         self._build_ui()
 
@@ -137,7 +138,8 @@ class Forecast(Gtk.Grid):
         tomorrow_btn.set_size_request(self.ITEM_WIDTH_REQUEST, self.ITEM_HEIGHT_REQUEST)
         tomorrow_btn.set_css_classes(["btn_sm"])
         tomorrow_btn.set_active(True)
-        tomorrow_btn.connect("clicked", self._on_tomorrow_clicked)
+        hid = tomorrow_btn.connect("clicked", self._on_tomorrow_clicked)
+        self._signal_handlers.append((tomorrow_btn, hid))
         button_bar.append(tomorrow_btn)
 
         # Weekly button (grouped with tomorrow)
@@ -145,10 +147,18 @@ class Forecast(Gtk.Grid):
         weekly_btn.set_size_request(self.ITEM_WIDTH_REQUEST, self.ITEM_HEIGHT_REQUEST)
         weekly_btn.set_css_classes(["btn_sm"])
         weekly_btn.set_group(tomorrow_btn)
-        weekly_btn.connect("clicked", self._on_weekly_clicked)
+        hid = weekly_btn.connect("clicked", self._on_weekly_clicked)
+        self._signal_handlers.append((weekly_btn, hid))
         button_bar.append(weekly_btn)
 
         return button_bar
+
+    def cleanup(self) -> None:
+        """Disconnect all self-referential signal handlers to break GObject↔Python cycles."""
+        for widget, handler_id in self._signal_handlers:
+            if widget.handler_is_connected(handler_id):
+                widget.disconnect(handler_id)
+        self._signal_handlers.clear()
 
     def _on_tomorrow_clicked(self, _widget: Gtk.ToggleButton) -> None:
         """Handle click on Tomorrow button."""
